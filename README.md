@@ -1,6 +1,6 @@
 # 📧 Email Spam Classifier
 
-An NLP-powered web application that classifies emails or messages as **Spam** or **Not Spam (Ham)** using Machine Learning and Natural Language Processing techniques. The application features a modern user interface built with Flask and provides real-time predictions.
+An NLP-powered web application that classifies emails or messages as **Spam** or **Not Spam (Ham)** using Machine Learning and Natural Language Processing techniques. The application uses **TF-IDF Vectorization** and a **Multinomial Naive Bayes** classifier to provide real-time predictions through a Flask-based web interface.
 
 ## 🏠 Home Page
 
@@ -13,21 +13,15 @@ An NLP-powered web application that classifies emails or messages as **Spam** or
 ---
 
 ## 🚀 Features
-✅ Classifies messages as Spam or Not Spam
 
-✅ Performs advanced text preprocessing and cleaning
-
-✅ Uses TF-IDF Vectorization for feature extraction
-
-✅ Employs Multinomial Naive Bayes for classification
-
-✅ Interactive and responsive user interface
-
-✅ Real-time message analysis
-
-✅ Displays model evaluation metrics
-
-✅ Deployed as a web application using Flask
+* ✅ Classifies messages as **Spam** or **Not Spam**
+* ✅ Text preprocessing and cleaning
+* ✅ TF-IDF Vectorization for feature extraction
+* ✅ Multinomial Naive Bayes classification
+* ✅ Interactive and responsive user interface
+* ✅ Real-time message prediction
+* ✅ Model evaluation using accuracy and precision
+* ✅ Flask-based web application
 
 ---
 
@@ -36,15 +30,19 @@ An NLP-powered web application that classifies emails or messages as **Spam** or
 ### Machine Learning & NLP
 
 * Python
-* Scikit-Learn
+* Scikit-learn
+* Pandas
+* NumPy
 * NLTK
-* TF-IDF Vectorizer
+* TF-IDF Vectorization
+* Multinomial Naive Bayes
 
 ### Web Development
 
 * Flask
 * HTML5
 * CSS3
+* JavaScript
 
 ### Deployment
 
@@ -52,10 +50,20 @@ An NLP-powered web application that classifies emails or messages as **Spam** or
 
 ---
 
+## 📊 Dataset
+
+The model was trained using the **SMS Spam Collection Dataset**, which contains SMS messages labeled as either spam or legitimate (ham).
+
+🔗 **Dataset:** [Kaggle – SMS Spam Collection Dataset](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
+
+**Dataset Source:** UCI Machine Learning Repository / Kaggle
+
+---
+
 ## 📂 Project Structure
 
-```bash
-Email-Spam-Classifier/
+```text
+Email-Spam-Classifier_IBM-SkillsBuild/
 │
 ├── static/
 │   ├── home_page.png
@@ -73,9 +81,10 @@ Email-Spam-Classifier/
 ├── .gitignore
 └── README.md
 ```
+
 ---
 
-## 📊 Model Performance
+## 📈 Model Performance
 
 ### Confusion Matrix
 
@@ -85,23 +94,25 @@ Email-Spam-Classifier/
 
 ![Evaluation Scores](static/evaluation_score.png)
 
-| Metric    | Score      |
-| --------- | ---------- |
-| Accuracy  | **97.09%** |
-| Precision | **100%**   |
+| Metric        | Score      |
+| ------------- | ---------- |
+| **Accuracy**  | **97.09%** |
+| **Precision** | **100%**   |
 
 ---
 
 ## 🧠 Machine Learning Workflow
 
-1. Data Cleaning and Preprocessing
-2. Text Tokenization
-3. Removal of Stopwords and Punctuation
-4. Stemming using Porter Stemmer
-5. TF-IDF Feature Extraction
-6. Model Training
-7. Model Evaluation
-8. Web Deployment
+1. Data Collection
+2. Data Cleaning and Preprocessing
+3. Text Tokenization
+4. Removal of Stopwords and Punctuation
+5. Stemming using Porter Stemmer
+6. TF-IDF Feature Extraction
+7. Model Training
+8. Model Evaluation
+9. Flask Web Application
+10. Deployment
 
 ---
 
@@ -109,13 +120,13 @@ Email-Spam-Classifier/
 
 ```text
 Input Message
-       ↓
+      ↓
 Text Preprocessing
-       ↓
+      ↓
 TF-IDF Vectorization
-       ↓
-Trained Machine Learning Model
-       ↓
+      ↓
+Multinomial Naive Bayes Model
+      ↓
 Spam / Not Spam Prediction
 ```
 
@@ -126,19 +137,19 @@ Spam / Not Spam Prediction
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/SandeepKumarSha/Email-Spam-Classifier.git
+git clone https://github.com/SandeepKumarSha/Email-Spam-Classifier_IBM-SkillsBuild.git
 ```
 
 ### 2. Navigate to the Project Directory
 
 ```bash
-cd Email-Spam-Classifier
+cd Email-Spam-Classifier_IBM-SkillsBuild
 ```
 
 ### 3. Create a Virtual Environment
 
 ```bash
-python -m venv venv
+python -m venv myenv
 ```
 
 ### 4. Activate the Virtual Environment
@@ -146,13 +157,13 @@ python -m venv venv
 #### Windows
 
 ```bash
-venv\Scripts\activate
+myenv\Scripts\activate
 ```
 
 #### macOS/Linux
 
 ```bash
-source venv/bin/activate
+source myenv/bin/activate
 ```
 
 ### 5. Install Dependencies
@@ -169,7 +180,7 @@ python app.py
 
 The application will be available at:
 
-```bash
+```text
 http://127.0.0.1:5000
 ```
 
@@ -184,3 +195,6 @@ http://127.0.0.1:5000
 
 ---
 
+## 📜 License
+
+This project is created for **educational and learning purposes** as part of the IBM SkillsBuild learning experience.
