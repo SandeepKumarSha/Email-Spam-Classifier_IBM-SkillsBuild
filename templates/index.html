@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Classifier - AI Spam Detection</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="branding-icon">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <h1 class="title">Spam Shield</h1>
+            <p class="subtitle">Analyze emails or messages instantly using our pre-trained machine learning model to
+                verify their legitimacy.</p>
+        </header>
+
+        <!-- Classifier Form -->
+        <form method="POST" class="classifier-form">
+            <div class="input-group">
+                <textarea name="message" class="text-area"
+                    placeholder="Paste the email content or message text here to analyze..."
+                    required>{{ request.form.get('message', '') }}</textarea>
+            </div>
+
+            <!-- Interactive Example Messages -->
+            <div class="examples-container">
+                <span class="examples-label">
+                    <i class="fa-regular fa-lightbulb"></i> Try:
+                </span>
+                <div class="example-pills">
+                    <button type="button" class="example-pill"
+                        onclick="fillExample('Congratulations! You won a free cash prize of ₹50,000. Call to claim now!')">
+                        <span class="pill-tag spam">Spam</span>
+                        <span class="pill-text">Congratulations! You won a free cash prize of ₹50,000. Call to claim
+                            now!</span>
+                    </button>
+                    <button type="button" class="example-pill" onclick="fillExample('Hey, are we meeting tomorrow?')">
+                        <span class="pill-tag ham">Ham</span>
+                        <span class="pill-text">Hey, are we meeting tomorrow?</span>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>Scan Message</span>
+                <i class="fa-solid fa-circle-arrow-right"></i>
+            </button>
+        </form>
+
+        <!-- Prediction Result Container -->
+        {% if prediction %}
+        <section class="result-container" id="prediction-result">
+            {% if prediction == 'Spam' %}
+            <div class="result-card spam">
+                <div class="result-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="result-info">
+                    <span class="result-title">Spam Detected</span>
+                    {% if confidence is not none %}
+                    <span class="confidence-badge">
+                        <i class="fa-solid fa-gauge-high"></i> Confidence: {{ confidence }}%
+                    </span>
+                    {% endif %}
+                    <span class="result-desc">This message matches common patterns found in spam, phishing, or
+                        unsolicited emails.</span>
+                </div>
+            </div>
+            {% else %}
+            <div class="result-card not-spam">
+                <div class="result-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="result-info">
+                    <span class="result-title">Legitimate Message</span>
+                    {% if confidence is not none %}
+                    <span class="confidence-badge">
+                        <i class="fa-solid fa-gauge-high"></i> Confidence: {{ confidence }}%
+                    </span>
+                    {% endif %}
+                    <span class="result-desc">This message appears to be safe and clean. No spam signatures
+                        detected.</span>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-powered">Powered by Flask + Scikit-Learn</p>
+        </footer>
+    </main>
+
+    <!-- Custom JavaScript -->
+    <script>
+        function fillExample(text) {
+            const textarea = document.querySelector('.text-area');
+            if (textarea) {
+                textarea.value = text;
+                textarea.focus();
+            }
+        }
+    </script>
+</body>
+
+</html>
